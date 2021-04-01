@@ -545,7 +545,7 @@ def view_center(request, pk):
 def view_questions(request, pk):
     question1 = get_object_or_404(question, pk=pk)
     assessment_type = None
-    if question1.question_type.pk in [7, 8, 9] and question1.question_content is not None:
+    if question1.question_type.pk in [7, 8, 9]:
         question1.sub_questions = question.objects.filter(
             question_content=question1.question_content)
     try: 
@@ -660,45 +660,19 @@ def batch_search(request):
 
 
 def questionss(request):
-    #questions1 = question.objects.all()
-    #paginator = Paginator(questions1, paginator_num_pages)
-    try:
-        page = int(request.GET.get('page'))
-        searchText = str(request.GET.get('searchtext'))
-    except:
-        page = 1
-        searchText = ""
-    if searchText != "" and searchText != 'None':
-        questions1 = question.objects.all().filter(question__contains=searchText)
-    else:
-        questions1 = question.objects.all()
+    questions1 = question.objects.all()
     paginator = Paginator(questions1, paginator_num_pages)
     try:
-        
+        page = int(request.GET.get('page'))
+    except:
+        page = 1
+
+    try:
         questions11 = paginator.page(page)
     except:
         questions11 = paginator.page(paginator_num_pages)
 
     return render(request, 'question/questions.html', {"p": questions11})
-
-def questions_search(request):
-    try:
-        searchText = str(request.GET.get('searchtext'))
-    except:
-        searchText = ""
-    if searchText != "":
-        questions1 = question.objects.all().filter(question__contains=searchText)
-    else:
-        questions1 = question.objects.all()
-    paginator = Paginator(questions1, paginator_num_pages)
-    page = 1
-
-    try:
-        questions11 = paginator.page(page)
-    except:
-        questions11 = paginator.page(paginator_num_pages)
-
-    return render(request, 'ajax/questions_search.html', {"p": questions11})
 
 
 @login_required
@@ -1063,7 +1037,7 @@ def add_batch(request):
     if request.method == "POST":
         form = add_batch_form(request.POST)
         if form.is_valid():
-            #form.end()
+            form.end()
             a = form.cleaned_data.get('batch_name')
             form.save()
             messages.success(request, f'Successfully edited {a}')
@@ -1181,3 +1155,24 @@ class LoginView1(auth_views.LoginView):
 class LogoutView1(auth_views.LogoutView):
     template_name = 'admin_logout.html'
     form_class = AuthenticationForm
+    
+def Mi(request):
+    return render(request, "Mi.html")
+    
+   
+def Out(request):
+    return render(request, "Out.html")
+    
+def Listen(request):
+    return render(request, "listening.html")
+  
+def LScore(request):
+    return render(request, "Lscoring.html")
+def LHome(request):
+    return render(request, "LHome.html")    
+def Module_view_SK(request):
+    return render(request, "module_view_lifeskills.html")  
+def Module_view_LS(request):
+    return render(request, "module_view_ss.html")   
+def Mhome(request):
+    return render(request, "Mhome.html")        
