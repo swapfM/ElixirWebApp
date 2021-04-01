@@ -1,4 +1,3 @@
-
 """creating_futures URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -57,12 +56,16 @@ urlpatterns = [
     path('ajax/load_fac_home/', views.load_fac_home, name='load_fac_home'),
     path('ajax/student_search/', views.student_search, name='student_search'),
     path('ajax/batch_search/', views.batch_search, name='batch_search'),
-    path('ajax/questions_search', views.questions_search, name='questions_search'),
-    path('ajax/question_type_form/',views.question_type_form, name='question_type_form'),
+    path('ajax/question_type_form/',
+         views.question_type_form, name='question_type_form'),
+
+
+
     path('delete_program/<int:pk>', views.delete_program, name='delete_program'),
     path('delete_module/<int:pk>', views.delete_module, name='delete_module'),
     path('delete_level/<int:pk>', views.delete_level, name='delete_level'),
-    path('delete_facilitator/<int:pk>',views.delete_facilitator, name='delete_facilitator'),
+    path('delete_facilitator/<int:pk>',
+         views.delete_facilitator, name='delete_facilitator'),
     path('delete_student/<int:pk>', views.delete_student, name='delete_student'),
     path('delete_center/<int:pk>', views.delete_center, name='delete_center'),
     path('delete_batch/<int:pk>', views.delete_batch, name='delete_batch'),
@@ -118,10 +121,10 @@ urlpatterns = [
 
     path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>',
          s_views.spoken_english, name="spoken_english"),
-    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/crossword/<str:narrative>/<int:assessment_type_id>', s_views.crossword, name="crossword"),
-    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/word_find/<str:narrative>/<int:assessment_type_id>', s_views.word_find, name="word_find"),
-    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/list_narrative/match/<str:narrative>/<int:assessment_type_id>', s_views.match, name="match"),
-    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/list_narrative/<int:assessment_type_id>', s_views.list_narrative, name="list_narrative"),
+    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/crossword/<str:narrative>/<int:question_type_id>', s_views.crossword, name="crossword"),
+    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/word_find/<str:narrative>/<int:question_type_id>', s_views.word_find, name="word_find"),
+    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/list_narrative/match/<str:narrative>/<int:question_type_id>', s_views.match, name="match"),
+    path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/list_narrative/<int:question_type_id>', s_views.list_narrative, name="list_narrative"),
     path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:pk3>/level/<int:pk4>/lesson',s_views.lesson,name="lesson"),
     path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:m>/level/<int:l>/score_save/<int:typ>/<int:score>/<int:total_score>', s_views.score_save, name="score_save"),
     path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:pk3>/',
@@ -138,6 +141,7 @@ urlpatterns = [
 #          s_views.crossword, name="crossword"),
     path('s_home/<int:pk>/batch/<int:pk1>/program/<int:pk2>/module/<int:pk3>/level/<int:pk4>/resume_builder/',
          s_views.e2e_modules, name="e2e_modules"),
+    
 
 
 
@@ -163,7 +167,15 @@ urlpatterns = [
          s_views.test_submit, name="test_submit"),
 
 
-    path('error/', views.error, name="error")
+    path('error/', views.error, name="error"),
+    path('LifeSkills/', views.Mi, name="Lifeskills" ),
+    path('Out/', views.Out, name="Out" ),
+    path('LT/', views.Listen, name="LT" ),
+    path('Lscore/', views.LScore, name="Lscore" ),
+    path('LHome/', views.LHome, name="LHome" ),
+     path('Mview/', views.Module_view_SK, name="Mview" ),
+     path('Mview1/', views.Module_view_LS, name="Mview1" ),
+     path('Mhome/', views.Mhome, name="Mhome" ),
 
 
 
