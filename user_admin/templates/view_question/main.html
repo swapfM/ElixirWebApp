@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %} {% block content %}
+{% load static %}
+<!DOCTYPE html>
+
+    <div id="box">
+      
+      <p>
+        <label>Program Name :</label>
+        {{f.program}}<br/> 
+      </p>
+
+      <p>
+        <label>Module Name :</label>
+        {{f.module}}<br/> 
+      </p>
+
+      <p>
+        <label>Level :</label>
+        {{f.level}}<br/> 
+      </p>
+
+      
+ 
+      <p>
+        <label>Question Type :</label>
+       {{f.question_type}}<br/> 
+      </p>
+
+      <p>
+        <label>Assessment Type :</label>
+    
+        {% if f.assessment_type_id != None  %}
+          {{ f.assessment_type }} <br/> 
+        {% endif %}
+
+        {% if f.assessment_type_id == None  %}
+          <span> None </span>      
+        {% endif %}
+
+      </p>
+
+      {% block sub_view %} {% endblock sub_view %}
+
+      <br>
+<br>
+      <div class="buttonouter" style="display: flex; justify-content: center;">
+        <button
+        type="button"
+        class="button"
+        onclick="back()"
+        >
+            Go Back
+        </button>
+      </div>
+
+    </div>
+
+{% endblock content %}

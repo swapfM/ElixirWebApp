@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load student_tag %}
+{% block page_specific_htmlhead%}
+ <link rel="stylesheet" href="/static/css/Programs.css" />
+{% endblock%}
+
+
+{% block content %} 
+
+    <ul class="breadcrumb">
+      <li>
+        <a href="{% url 'spoken_english' pk pk1 programName %}" >MODULES</a>
+      </li>
+      <li>
+        <a href="#">General Assessment</a>
+      </li>
+      
+      
+    </ul>
+  
+
+    <h1 id="GAHeader"> 
+        EXERCISES ON {{m.module_name|allcaps}} - {{l.level_description|allcaps}} 
+    </h1>
+    <br>
+    <h2 id="GASubHeader"> 
+        Standard Test
+     </h2>
+    <br> 
+    <br>
+    <div id="container">
+
+      <center>
+        <button id="submit" class="button">Start Test</button>
+      </center>
+
+
+      <br>
+    <script type="text/javascript">
+
+        // '/s_home/'+{{pk}}+'/batch/'+{{pk1}}+'/program/'+{{pk2}}+'/module/'+{{pk3}}+'/level/'+{{pk4}}+'/test'
+
+    $("#submit").click(function() {
+      $.ajax({ // initialize an AJAX request
+        url:'/s_home/'+"{{pk}}"+'/batch/'+"{{pk1}}"+'/program/'+"{{pk2}}"+'/module/'+"{{pk3}}"+'/level/'+"{{pk4}}"+'/standard_test/ajax/test/',
+        type:'GET', // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          correct:"pass",
+          id:"{{i}}",
+          "score":0
+        },
+        success: function(data) {
+          $("#container").html(data) // `data` is the return of the `load_cities` view function
+        }
+      });
+
+        });
+
+
+      </script>
+
+
+    </div>
+
+
+{% endblock content %} 
