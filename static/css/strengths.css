@@ -1,0 +1,83 @@
+
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: #4f4848;
+}
+
+.navbar{
+
+    background-color: #fcb040;
+    height: 100px;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #fa0000;
+}
+
+.grid{
+    padding: 2rem;
+}
+
+.card{
+
+    min-height: 250px;
+    border-radius: 12px !important;
+}
+
+.card-header{
+    border-top-left-radius:12px !important;
+    border-top-right-radius:12px !important;
+    font-size: 1.5rem;
+    background: #4f4848;
+    opacity: 0.6;
+    text-transform: uppercase;
+    padding-left: 1.5rem;
+    color: white !important;
+}
+
+.card-body{
+    background: rgba(196, 196, 196, 0.1);
+}
+
+.btn{
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    /*box-shadow: none !important;*/
+    word-wrap: break-word;
+    width: 90%;
+    max-width: 250px;
+    font-size: 1.2em;
+    padding: 10px;
+    background: rgba(217, 216, 216,0.6);
+    color: #4f4848 !important;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px !important;
+}
+.btn:hover{
+    opacity: 1;
+    transform: scale(1.05);
+
+}
+
+.fa-check-circle{
+    display: none !important;
+}
+
+.select{
+    background: #fcb040 !important;
+    color: white !important;
+}
+
+.select>i{
+    font-size:0.8em ;
+    display: inline !important;
+    vertical-align: super;
+    color: #4f4848;
+}
+
+/*{*/
+/*    background: #fcb040 !important;*/
+/*    color: white !important;*/
+/*}*/

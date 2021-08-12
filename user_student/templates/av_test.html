@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load student_tag %}
+
+{#<style>
+  #top {
+  top: 0;
+  background-color: orange;
+  height: 100px;
+}
+body{
+background: #FFFFFF;
+font-family:Montserrat;
+font-size:12px;
+}
+
+*{transition:all 0.3s ease-in-out;}
+
+.container{
+clear:both;
+overflow:auto;
+background: white;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  width: 1300;
+  top:45;
+  left:95;
+
+}
+
+nav{float:right;}
+
+.logo img{float:left; padding:8px;}
+
+ul li{
+display: inline-block; padding:10px;
+font-size:20px; font-family:"Montserrat";
+}
+
+ul li:hover{
+color:orange;
+
+}
+.outer{
+  background: orange;
+  position: relative;
+  height: 150px;
+}
+hr{
+  background-color: orange;
+  width: 8%;
+
+  align-content: center;
+  height: 1px;
+  color: orange;
+  border: none;
+}
+h1{
+  font-family: "Montserrat";
+  font-weight: 100;
+
+ }
+ body {background-color: lightgrey;}
+
+ #box1{
+     z-index: 1;
+     width:320;
+     height:370;
+     margin:auto;
+     position: absolute;
+
+     background-color: white;
+     top: 350;
+     left: 580;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+
+
+.button{
+ font-family: 'Montserrat';
+ background-color: orange;
+ border: none;
+ color: black;
+ padding: 12px 22px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 14px;
+ margin: 4px 2px;
+ cursor: pointer;
+box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+   outline: none;
+ }
+
+  ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color:lightgray;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: darkblue;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+ol > li {
+
+        font-size:15px;
+    }
+  </style>#}
+ 
+
+
+
+
+{% block page_specific_htmlhead%}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock page_specific_htmlhead%}
+{% block content %} 
+    <ul class="breadcrumb">
+      <li>
+        <a href="{% url 'spoken_english' pk pk1 'spoken english' %}" >MODULES</a>
+      </li>
+      <li>
+        <a href="{% url 'list_narrative' pk pk1 pk2 m.pk l.pk pk5 %}">AV Test</a>
+      </li>
+  
+    </ul>
+
+    <h1 style="text-align:center"> 
+        EXERCISES ON {{m.module_name|allcaps}} - {{l.level_description|allcaps}} 
+    </h1>
+    <br>
+    <h2 style="text-align:center"> Text / Audio / Video Test </h2>
+    <br> <br>
+    <div id="container">
+
+        <center>
+            <button id="submit" class="button">Start Test</button>
+        </center>
+        <br>
+        <script type="text/javascript">
+        var done=0;
+        var narrative = "{{narrative|safe}}";
+        console.log(typeof narrative);
+        $("#submit").click(function() {
+          $.ajax({ // initialize an AJAX request
+            url:'/s_home/'+{{pk}}+'/batch/'+{{pk1}}+'/program/'+{{pk2}}+'/module/'+{{pk3}}+'/level/'+{{pk4}}+'/type/'+{{pk5}}+'/av_test/ajax/test/'+narrative,
+            type:'GET', // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+              // questions:"{{q}}",
+              correct:"pass",
+              id:"{{i}}",
+              "score":0
+            },
+            success: function(data) {
+              $("#container").html(data) // `data` is the return of the `load_cities` view function
+            }
+          });
+
+        });
+
+        </script>
+
+
+</div>
+{% endblock content%}

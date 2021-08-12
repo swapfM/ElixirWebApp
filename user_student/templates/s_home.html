@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load student_tag %}
+
+
+
+{% block page_specific_htmlhead%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock page_specific_htmlhead%}
+{% block page_specific_styles%}
+
+  .nav {
+    background:url("{% static 'IMG_20191019_123545.jpg' %}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:50% !important;
+    display:grid !important;
+  }
+
+
+  #box {
+    z-index: 1;
+    width:calc(20% - 10px);
+    height: 270px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    background-color: white;
+    /* top: 350;
+  left: 160; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .container1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 768px) {
+
+    #box{
+      width:100%;
+      margin: 0px 50px 20px 50px;
+    }
+      
+  }
+  
+
+
+{% endblock page_specific_styles%}
+
+{%block welcome %}
+    <div style="grid-row:3/4;justify-items:center;align-items:center;text-align:center">
+      <p style="font-size:200%;margin:10px;color:white">WELCOME {{s.first_name|allcaps}}</p>
+    </div>
+{% endblock welcome%}
+{% block content %}
+  <br>
+   <br>
+  <div class="col-md-8">
+
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="" style="background-color:rgb(50, 221, 110);padding:20px;margin:20px" role="alert">
+
+      {{message}}
+    </div>
+
+    {% endfor %}
+    {% endif %}
+  </div>
+  <br>
+
+  <div class="container1">
+
+  {% for p in p1 %}
+        <div id="box">
+           
+            <center><h4><font>{{p.program_name|allcaps}}</font></h4></center>
+            <center><img src="{% static p.program_name|str1 %}" width="200" height="90"></center>
+            <br><br>
+            <center><a href="{% url 'spoken_english' pk pk1 p.program_name %}" class="button">GO TO COURSE</a></center>
+          
+
+         </div>
+            
+
+    {% endfor %}
+
+  </div>
+
+
+{% endblock%}

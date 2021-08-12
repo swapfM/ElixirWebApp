@@ -1,0 +1,38 @@
+{% load user_tags %}
+
+{% if m|check1 %}
+<div class="row">
+  <div class="col-md-12">
+
+  
+<table  class="table" align="center" style="width:65%;font-family: Montserrat">
+<tr>
+  <th>BATCH</th>
+  <th>PROGRAM</th>
+<th>START DATE</th>
+  <th>END DATE</th>
+  <th>STATUS</th>
+<th>ACTIONS</th>
+</tr>
+{% for s1 in m %}
+<tr>
+  <td class="col-md-2">{{s1}}</td>
+  <td class="col-md-3">{{s1.program_id}}</td>
+  <td class="col-md-2">{{s1.start_date}}</td>
+  <td class="col-md-2">{{s1.end_date}}</td>
+  <td class="col-md-2">{{s1.status}}</td>
+  <td class="col-md-1"><a href="{% url 'edit_batch' s1.batch_id %}" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil actionedit"></a> &nbsp; &nbsp; <a href="{% url 'view_batch' s1.batch_id %}" data-toggle="tooltip" data-placement="bottom" title="View"><span class="glyphicon glyphicon-eye-open actionview"></span></a></td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+</div>
+<br>
+
+{% else %}
+
+<p style="margin-left:21px;font-size:20px">Batch with that name does not exist</p>
+
+
+{% endif %}

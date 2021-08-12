@@ -1,0 +1,110 @@
+
+{% load student_tag %}
+{% load static %}
+
+{% block page_specific_htmlhead%}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'match_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/score_card.css' %}">
+{% endblock%}
+{% block content %}
+    <ul class="breadcrumb" style="display:none" id="writing_breadcrumb">
+      <li>
+        <a href="/s_home/20/batch/12/program/spoken%20english">MODULES</a>
+      </li>
+      <li>
+        <a href="#">General Assessment</a>
+      </li>
+    </ul>
+
+    <h1 id="GAHeader" style="display:none"> 
+      <b>EXERCISES ON WRITING-<span style="text-transform: uppercase;">{{level}}</span></b>
+    </h1>
+
+    <h2 id="GASubHeader"> 
+     <b> Standard Test</b>
+   </h2>
+
+    <div class="container1">
+
+      <h1>Score : {{score}}</h1>
+      <h1 id="status"></h1>
+
+      <h4 >
+        <a style="display:none" id="next_level" class="button" href="{% url 'spoken_english' pk pk1 programName %}">
+            Next Level
+        </a>
+      </h4>
+
+      {% if test_name|standard %}
+      <h4 >
+        <a style="display:none" id="try_again" class="button" style="display: none;" href="{% url 'standard_test' pk pk1 pk2 pk3 pk4 %}">
+            Try Again
+        </a>
+      </h4>
+  
+      {% endif %}
+      {% if test_name|image %}
+      <h4 >
+        <a style="display:none" id="try_again" class="button"  href="{% url 'image_test' pk pk1 pk2 pk3 pk4 %}">
+          Try Again
+        </a>
+      </h4>
+      {% endif %}
+      {% if test_name|av %}
+      <h4 >
+        <a style="display:none" id="try_again" class="button"  href="{% url 'av_test' pk pk1 pk2 pk3 pk4 pk5 narrative%}">
+          Try Again
+        </a>
+      </h4>
+      {% endif %}
+
+    </div>
+
+
+
+    <script type="text/javascript">
+
+      var i = parseInt("{{score}}");
+      var j = parseInt("{{len}}");
+      var total_marks = parseInt("{{total_marks}}")
+      var test_type = "{{test_type}}"
+      console.log("{{text_name}}")
+      if (i > j / 2  || (test_type == "writing" && i >= 0.8)) {
+        $("#status").html("Status : Pass")
+        $("#submit").css("display", "block")
+        $("#next_level").css("display", "block")
+        if (test_type == "writing"){
+        $("#GAHeader").css("display", "block")
+        $("#writing_breadcrumb").css("display", "block")
+        }
+      }
+
+      else {
+        $("#status").html("Status : Fail")
+        $("#try_again").css("display", "block")
+      }
+
+
+      $("#submit1").click(function () {
+        //var url = $("#form1").attr("data-modules-url");
+
+        $.ajax({ // initialize an AJAX request
+          url:'/s_home/'+"{{pk}}"+'/batch/'+"{{pk1}}"+'/program/'+"{{pk2}}"+'/module/'+"{{pk3}}"+'/level/'+"{{pk4}}"+'/test/submit/',
+          type:'GET', // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+          data: {
+            score: "{{score}}",
+            test_name: "{{test_name}}"
+          },
+          success: function(data) {
+            location.replace('/s_home/' + "{{ pk }}" + '/batch/' + "{{ pk1 }}" + '/program/' + "{{ pk2 }}")
+
+          }
+        });
+
+      });
+    </script>
+
+
+
+{% endblock content %} 
